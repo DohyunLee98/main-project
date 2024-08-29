@@ -1,0 +1,21 @@
+.container {
+    margin: 8px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    width: 220px;
+    display: inline-block;
+    vertical-align: top;
+  }
+  
+  .header {
+    padding: 8px;
+  }
+  
+  .item {
+    padding: 8px;
+    margin: 4px;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    background-color: white;
+  }
+  

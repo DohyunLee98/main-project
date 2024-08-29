@@ -1,5 +1,5 @@
-import Project from "../component/main/project/Project";
-import Schedule from "../component/main/schedule/Schedule";
+import Project from "../components/main/project/Project";
+import Schedule from "../components/main/schedule/Schedule";
 
 const MainPage = () => {
   return (

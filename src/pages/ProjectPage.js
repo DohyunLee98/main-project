@@ -1,5 +1,13 @@
+import Schedule from "../components/project/Schedule";
+import InvitePage from "./InvitePage";
+
 const ProjectPage = () => {
-  return <div>프로젝트 페이지</div>;
+  return (
+    <div>
+      <Schedule />
+      <InvitePage />
+    </div>
+  );
 };
 
 export default ProjectPage;
