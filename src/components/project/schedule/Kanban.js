@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { addTodo, onKanbanDragEnd } from "../../modules/project"; // 모듈에서 onDragEnd 함수 가져오기
-import "../../styles/Kanban.css";
-import Btn from "../common/Btn";
+import { addTodo, onKanbanDragEnd } from "../../../modules/project"; // 모듈에서 onDragEnd 함수 가져오기
+import "../../../styles/Kanban.css";
+import Btn from "../../common/Btn";
 
 function Kanban() {
   const todos = {

@@ -1,4 +1,4 @@
-import GanttChart from "../common/Gantt";
+import GanttChart from "../../common/Gantt";
 import Kanban from "./Kanban";
 
 const Schedule = () => {
