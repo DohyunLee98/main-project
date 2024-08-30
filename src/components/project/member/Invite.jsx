@@ -1,9 +1,9 @@
 import React from 'react';
-import MemberInput from '../components/project/MemberInput';
-import MemberList from '../components/project/MemberList';
-import useMembers from '../modules/useMembers';
+import useMembers from '../../../modules/useMembers';
+import MemberInput from './MemberInput';
+import MemberList from './MemberList';
 
-const InvitePage = () => {
+const Invite = () => {
   const { members, addMember, removeMember, changeRole } = useMembers();
 
   return (
@@ -16,4 +16,4 @@ const InvitePage = () => {
   );
 };
 
-export default InvitePage;
+export default Invite;

@@ -3,32 +3,36 @@ import AddBtn from "./AddBtn";
 import LatestProject from "./LatestProject";
 import ManagementBtn from "./ManagementBtn";
 import ProjectList from "./ProjectList";
+import { requestProjects } from "../../../modules/main";
 
 const Project = () => {
-  const [latestProject, setLatestProjects] = useState(null);
+  const [latestProject, setLatestProject] = useState(null);
   const [projectList, setProjectList] = useState(null);
 
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await requestProjects();
+
+        if (response && response.length > 0) {
+          setLatestProject(response[0]); // 첫 번째 프로젝트 설정
+          setProjectList(response.slice(1)); // 나머지 프로젝트 목록 설정
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchProjects();
+  }, []); // 의존성 배열에 빈 배열을 넣어, 컴포넌트 마운트 시 한 번만 실행
+
   return (
-    <div style={{ padding: "20px", width: "80%", margin: "0 auto" }}>
-      {/* 상단 영역: 프로젝트 텍스트와 추가 및 관리 버튼 */}
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <h2>●프로젝트</h2>
-        <div>
-          <AddBtn />
-          <ManagementBtn />
-        </div>
-      </div>
-
+    <div>
+      ● Project
+      <AddBtn />
+      <ManagementBtn />
       <hr />
-
-      {/* 프로젝트 목록 및 최신 프로젝트 */}
-      <LatestProject />
+      <LatestProject project={latestProject} />
       <ProjectList />
     </div>
   );

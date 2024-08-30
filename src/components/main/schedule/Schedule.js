@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import AddBtn from "./AddBtn";
-import Calendar from "./Calendar";
 import AddScheduleModal from "./AddScheduleModal";
 import axios from "axios";
 import TodoTemplate from "./Todo/TodoTemplate";
 import TodoList from "./Todo/TodoList";
+import Calendar from "../../common/Calendar";
 
 const Schedule = () => {
   const [events, setEvents] = useState([]);
