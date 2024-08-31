@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import EditScheduleModal from "../EditScheduleModal";
+import EditTodoModal from "../EditTodoModal";
 
 function TodoListItem({ todo, toggleTodo, deleteTodo, updateEvent }) {
   const [isEditing, setEditing] = useState(false);
@@ -67,7 +67,7 @@ function TodoListItem({ todo, toggleTodo, deleteTodo, updateEvent }) {
 
       {/* 수정 모달 */}
       {isEditing && (
-        <EditScheduleModal
+        <EditTodoModal
           isOpen={isEditing}
           onClose={() => setEditing(false)}
           event={todo}

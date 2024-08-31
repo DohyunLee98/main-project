@@ -7,11 +7,12 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(BigCalendar);
 
-const Calendar = ({ events, setEvents, onDateClick }) => {
+const Calendar = ({ events, setEvents, onDateClick, onTaskClick }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   //선택된 날짜를 Schedule로 전달
   const handleSelectSlot = (date) => {
+    console.log(selectedEvent);
     onDateClick(date.start);
   };
 
@@ -58,7 +59,9 @@ const Calendar = ({ events, setEvents, onDateClick }) => {
 
   // 이벤트 클릭 함수
   const handleSelectEvent = (event) => {
-    setSelectedEvent(event);
+    if (onTaskClick) {
+      onTaskClick(event.id); // 이벤트 ID를 사용하여 Task를 처리
+    }
   };
 
   return (

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ChakraProvider,
   Input,
@@ -16,44 +16,30 @@ import {
   Stack,
   Button,
 } from "@chakra-ui/react";
+import { initializeEvent, handleEditEvent } from "../../../modules/todoUtils";
 
-function AddScheduleModal({ isOpen, onClose, addEvent, defaultDate }) {
+function EditTodoModal({ isOpen, onClose, event, updateEvent }) {
   const [title, setTitle] = useState("");
-  const [startDate, setStartDate] = useState(defaultDate || "");
-  const [endDate, setEndDate] = useState(defaultDate || "");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
   const [time, setTime] = useState({ start: "", end: "" });
   const [status, setStatus] = useState("not_started");
 
-  //이벤트 저장 함수
-  const handleSave = () => {
-    console.log("Saving Event: ", {
-      id: Date.now(),
-      title,
-      start: startDate,
-      end: endDate,
-      time: `${time.start}~${time.end}`,
-      status: status,
-    });
-
-    if (title.trim() !== "") {
-      addEvent({
-        id: Date.now(),
-        title,
-        start: startDate,
-        end: endDate,
-        time: `${time.start}~${time.end}`,
-        status: status,
-      });
-      onClose();
-    }
-  };
+  useEffect(() => {
+    const { title, startDate, endDate, time, status } = initializeEvent(event);
+    setTitle(title);
+    setStartDate(startDate);
+    setEndDate(endDate);
+    setTime(time);
+    setStatus(status);
+  }, [event]);
 
   return (
     <ChakraProvider>
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>스케줄 추가</ModalHeader>
+          <ModalHeader>스케줄 수정</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
@@ -115,7 +101,22 @@ function AddScheduleModal({ isOpen, onClose, addEvent, defaultDate }) {
             <Button variant="ghost" onClick={onClose}>
               취소
             </Button>
-            <Button colorScheme="blue" ml={3} onClick={handleSave}>
+            <Button
+              colorScheme="blue"
+              ml={3}
+              onClick={() =>
+                handleEditEvent(
+                  event,
+                  updateEvent,
+                  title,
+                  startDate,
+                  endDate,
+                  time,
+                  status,
+                  onClose
+                )
+              }
+            >
               저장
             </Button>
           </ModalFooter>
@@ -125,4 +126,4 @@ function AddScheduleModal({ isOpen, onClose, addEvent, defaultDate }) {
   );
 }
 
-export default AddScheduleModal;
+export default EditTodoModal;

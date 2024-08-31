@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   ChakraProvider,
   Input,
@@ -17,45 +17,28 @@ import {
   Button,
 } from "@chakra-ui/react";
 
-function EditScheduleModal({ isOpen, onClose, event, updateEvent }) {
-  const [title, setTitle] = useState(event.title || "");
-  const [startDate, setStartDate] = useState(event.startDate || "");
-  const [endDate, setEndDate] = useState(event.endDate || "");
+function AddTaskModal({ isOpen, onClose, addTask, defaultDate }) {
+  const [title, setTitle] = useState("");
+  const [startDate, setStartDate] = useState(defaultDate || "");
+  const [endDate, setEndDate] = useState(defaultDate || "");
   const [time, setTime] = useState({ start: "", end: "" });
-  const [status, setStatus] = useState(event.status || "not_started");
+  const [status, setStatus] = useState("not_started");
 
-  useEffect(() => {
-    console.log("Event being edited: ", event);
-
-    if (event.time) {
-      const [start, end] = event.time.split("~");
-      setTime({ start, end });
-    }
-
-    const formatDate = (date) => {
-      if (date instanceof Date) {
-        return date.toISOString().split("T")[0];
-      }
-      return date;
+  //이벤트 저장 함수
+  const handleSave = () => {
+    const taskData = {
+      id: Date.now(),
+      title,
+      start: startDate,
+      end: endDate,
+      time: `${time.start}~${time.end}`,
+      status,
     };
 
-    setTitle(event.title || "");
-    setStartDate(formatDate(event.start) || "");
-    setEndDate(formatDate(event.end) || "");
-    setStatus(event.status || "not_started");
-  }, [event]);
+    console.log("Saving Task: ", taskData);
 
-  //이벤트 수정 함수
-  const handleSave = () => {
     if (title.trim() !== "") {
-      updateEvent({
-        ...event,
-        title,
-        start: startDate,
-        end: endDate,
-        time: `${time.start}~${time.end}`,
-        status,
-      });
+      addTask(taskData);
       onClose();
     }
   };
@@ -65,7 +48,7 @@ function EditScheduleModal({ isOpen, onClose, event, updateEvent }) {
       <Modal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>스케줄 수정</ModalHeader>
+          <ModalHeader>스케줄 추가</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
@@ -137,4 +120,4 @@ function EditScheduleModal({ isOpen, onClose, event, updateEvent }) {
   );
 }
 
-export default EditScheduleModal;
+export default AddTaskModal;

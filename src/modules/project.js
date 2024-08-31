@@ -1,6 +1,6 @@
 export const addTodo = (state, setState) => {
   // 칸반 todo 추가
-  console.log("추가", state);
+  console.log("칸반 todo 추가", state);
 };
 
 export const onKanbanDragEnd = (result, state, setState) => {

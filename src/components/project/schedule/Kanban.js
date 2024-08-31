@@ -1,23 +1,19 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import { addTodo, onKanbanDragEnd } from "../../../modules/project"; // 모듈에서 onDragEnd 함수 가져오기
+import { addTodoToTask } from "../../../modules/taskUtils";
 import "../../../styles/Kanban.css";
 import Btn from "../../common/Btn";
 
-function Kanban() {
-  const todos = {
-    // 추후 데이터 요청으로 변경
-    // 칸반 내용들
-    // id를 기본키로하여 statuses로 상태 구분
-    todos: {
-      1: { id: "1", title: "기획" },
-      2: { id: "2", title: "설계" },
-    },
+function Kanban({ selectedTask, setSelectedTask }) {
+  // 칸반 상태 초기화
+  const [state, setState] = useState({
+    todos: selectedTask?.todos || {},
     statuses: {
       "status-1": {
         id: "status-1",
         status: "시작 전",
-        todoIds: [1, 2],
+        todoIds: [],
       },
       "status-2": {
         id: "status-2",
@@ -31,19 +27,21 @@ function Kanban() {
       },
     },
     statusOrder: ["status-1", "status-2", "status-3"],
-  };
+  });
 
-  const [state, setState] = useState(todos);
+  const handleAddTodo = async () => {
+    const newTodo = await addTodoToTask(selectedTask.id); // 서버에 새로운 Todo 생성 요청
+    const updatedTask = {
+      ...selectedTask,
+      todos: [...selectedTask.todos, newTodo],
+    };
+
+    setSelectedTask(updatedTask); // Task에 새로운 Todo 추가
+  };
 
   return (
     <div>
-      <Btn
-        onClick={() => {
-          addTodo(state, setState);
-        }}
-      >
-        추가
-      </Btn>
+      <Btn onClick={(handleAddTodo) => {}}>추가</Btn>
 
       <DragDropContext
         onDragEnd={(result) => onKanbanDragEnd(result, state, setState)}
