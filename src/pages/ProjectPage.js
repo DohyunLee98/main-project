@@ -1,17 +1,25 @@
+import React from "react";
 import { useLocation } from "react-router-dom";
 import DirectoryViewer from "../components/project/document/Document";
 import Invite from "../components/project/member/Invite";
 import Schedule from "../components/project/schedule/Schedule";
+import Title from "../components/project/Title";
+import "../styles/ProjectPage.css";
 
 const ProjectPage = () => {
   const location = useLocation();
   const { project } = location.state || {};
 
   return (
-    <div>
+    <div className="project-page-container">
       {project}
+      {/* 프로젝트 제목과 공지사항 */}
+      <Title />
+      {/* 일정 섹션: 캘린더, 칸반, 간트차트 */}
       <Schedule />
+      {/* 문서 관리 섹션 */}
       <DirectoryViewer />
+      {/* 멤버 관리 섹션 */}
       <Invite />
     </div>
   );

@@ -5,7 +5,6 @@ const MainPage = () => {
   return (
     <div>
       <Project />
-      <hr />
       <Schedule />
     </div>
   );

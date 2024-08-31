@@ -10,6 +10,7 @@ import {
   handleDateClick,
 } from "../../../modules/scheduleUtils";
 import { fetchTaskWithTodos } from "../../../modules/taskUtils";
+import "../../../styles/ProjectSchedule.css";
 
 const Schedule = () => {
   const [events, setEvents] = useState([]);
@@ -35,13 +36,21 @@ const Schedule = () => {
   };
 
   return (
-    <div>
-      <Calendar
-        events={events}
-        setEvents={setEvents}
-        onDateClick={handleDateClick(setSelectedDate)}
-        onTaskClick={handleTaskClick}
-      />
+    <div className="schedule-container">
+      <div className="calendar-kanban-container">
+        <div className="calendar-container">
+          <Calendar
+            events={events}
+            setEvents={setEvents}
+            onDateClick={handleDateClick(setSelectedDate)}
+            onTaskClick={handleTaskClick}
+          />
+        </div>
+        <div className="kanban-gantt-container">
+          <Kanban task={selectedTask} />
+          <GanttChart />
+        </div>
+      </div>
       <AddBtn onClick={openModal(setModalOpen, setSelectedDate)} />
       <AddTaskModal
         isOpen={isModalOpen}
@@ -50,8 +59,6 @@ const Schedule = () => {
         addEvent={addEvent(events, setEvents)}
         defaultDate={selectedDate}
       />
-      <Kanban task={selectedTask} />
-      <GanttChart />
     </div>
   );
 };

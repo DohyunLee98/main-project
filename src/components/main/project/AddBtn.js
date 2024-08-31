@@ -8,7 +8,6 @@ const AddBtn = ({ onClick }) => {
   const navigate = useNavigate();
 
   const addProject = async () => {
-    console.log("add버튼");
     const response = await requestNewProject();
     setNewProject(response);
     navigate("/project", { state: { newProject: response } });
