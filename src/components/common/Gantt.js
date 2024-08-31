@@ -25,14 +25,14 @@ class GanttChart extends Component {
           name: "Task 2",
           start: "2024-09-28",
           end: "2024-10-05",
-          progress: 20,
+          progress: 20.5,
         },
         {
           id: "Task 3",
           name: "Task 3",
           start: "2024-09-01",
           end: "2024-09-10",
-          progress: 80,
+          progress: 77.7,
         },
       ],
     };

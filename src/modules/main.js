@@ -1,16 +1,34 @@
 import axios from "axios";
 
+export const requestProject = async (latestProject) => {
+  try {
+    const encodedProjectId = encodeURIComponent(latestProject.id);
+    const response = await axios(
+      `http://localhost:8080/project/${encodedProjectId}`
+    );
+
+    if (response.status < 200 || response.status >= 300) {
+      throw new Error("프로젝트 정보 요청 응답 실패");
+    }
+
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error("프로젝트 정보 불러오기 실패", error);
+    return null;
+  }
+};
+
 export const requestNewProject = async () => {
   try {
     const response = await axios.post("http://localhost:8080/project");
 
     // HTTP 상태 코드가 200 범위가 아니면 오류를 발생시킴
     if (response.status < 200 || response.status >= 300) {
-      throw new Error("요청에 대한 응답 실패");
+      throw new Error("새 프로젝트 생성 요청 응답 실패");
     }
 
     const data = response.data; // axios는 자동으로 JSON을 파싱하여 반환
-    console.log(data);
     return data;
   } catch (error) {
     console.error("파일 생성 실패", error);
