@@ -12,9 +12,15 @@ const ProjectPage = () => {
 
   return (
     <div className="project-page-container">
-      {project}
+      <button
+        onClick={() => {
+          console.log(project);
+        }}
+      >
+        화긴
+      </button>
       {/* 프로젝트 제목과 공지사항 */}
-      <Title />
+      <Title project={project} />
       {/* 일정 섹션: 캘린더, 칸반, 간트차트 */}
       <Schedule />
       {/* 문서 관리 섹션 */}
