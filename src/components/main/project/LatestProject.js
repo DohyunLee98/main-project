@@ -1,7 +1,8 @@
 import React from "react";
-import "../../../styles/LatestProject.css"; // CSS 파일을 import
+import "../../../styles/LatestProject.css";
+import GanttChart from "../../common/Gantt";
 
-const LatestProject = ({ title, dueDate, ganttChart, creatorProfile }) => {
+const LatestProject = ({ title, description, ganttChart, creatorProfile }) => {
   return (
     <div className="latest-project-container">
       <div className="latest-project-text-container">
@@ -10,8 +11,8 @@ const LatestProject = ({ title, dueDate, ganttChart, creatorProfile }) => {
           <div>{title}</div>
         </div>
         <div className="latest-project-dueDate">
-          <label>기한</label>
-          <div>{dueDate}</div>
+          <label>설명</label>
+          <div>{description}</div>
         </div>
         <div className="latest-project-ganttChart">
           <label>간트차트</label>

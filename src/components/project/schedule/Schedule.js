@@ -37,6 +37,12 @@ const Schedule = () => {
 
   return (
     <div className="schedule-container">
+      {/* 상단 영역: 일정 텍스트와 추가 버튼 */}
+      <div className="schedule-header">
+        <h2>●일정</h2>
+        <AddBtn onClick={openModal(setModalOpen, setSelectedDate)} />
+      </div>
+      <hr />
       <div className="calendar-kanban-container">
         <div className="calendar-container">
           <Calendar
@@ -51,7 +57,6 @@ const Schedule = () => {
           <GanttChart />
         </div>
       </div>
-      <AddBtn onClick={openModal(setModalOpen, setSelectedDate)} />
       <AddTaskModal
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
