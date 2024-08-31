@@ -11,8 +11,8 @@ import "../../../styles/LatestProject.css";
 import "../../../styles/ProjectList.css";
 
 const Project = () => {
+  const [projects, setProjects] = useState(null);
   const { isOpen, onOpen, onClose } = useModal();
-
   const [latestProject, setLatestProject] = useState(null);
   const [projectList, setProjectList] = useState(null);
 
@@ -20,10 +20,11 @@ const Project = () => {
     const fetchProjects = async () => {
       try {
         const response = await requestProjects();
+        setProjects(response);
 
-        if (response && response.length > 0) {
-          setLatestProject(response[0]); // 첫 번째 프로젝트 설정
-          setProjectList(response.slice(1)); // 나머지 프로젝트 목록 설정
+        if (projects && projects.length > 0) {
+          setLatestProject(projects[0]); // 첫 번째 프로젝트 설정
+          setProjectList(projects.slice(1)); // 나머지 프로젝트 목록 설정
         }
       } catch (error) {
         console.error(error);

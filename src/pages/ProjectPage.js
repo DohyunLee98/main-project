@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import DirectoryViewer from "../components/project/document/Document";
+import DirectoryViewer from "../components/project/document/Documents";
 import Invite from "../components/project/member/Invite";
 import Schedule from "../components/project/schedule/Schedule";
 import Title from "../components/project/Title";

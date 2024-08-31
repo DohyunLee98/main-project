@@ -57,4 +57,4 @@ const DirectoryViewer = () => {
   );
 };
 
-export default DirectoryViewer;
+export default Document;
