@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
-import { addTodo, onKanbanDragEnd } from "../../../modules/project"; // 모듈에서 onDragEnd 함수 가져오기
+import { onKanbanDragEnd } from "../../../modules/project"; // 모듈에서 onDragEnd 함수 가져오기
 import { addTodoToTask } from "../../../modules/taskUtils";
 import "../../../styles/Kanban.css";
 import Btn from "../../common/Btn";
@@ -41,7 +41,7 @@ function Kanban({ selectedTask, setSelectedTask }) {
 
   return (
     <div>
-      <Btn onClick={(handleAddTodo) => {}}>추가</Btn>
+      <Btn onClick={handleAddTodo}>추가</Btn>
 
       <DragDropContext
         onDragEnd={(result) => onKanbanDragEnd(result, state, setState)}

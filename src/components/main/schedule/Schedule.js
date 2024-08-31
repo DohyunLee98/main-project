@@ -4,18 +4,19 @@ import TodoTemplate from "./Todo/TodoTemplate";
 import TodoList from "./Todo/TodoList";
 import Calendar from "../../common/Calendar";
 import AddTodoModal from "./AddTodoModal";
-import "../../../styles/Schedule.css";
+import "../../../styles/MainSchedule.css";
 import {
   openModal,
   addEvent,
   handleDateClick,
   filterTodosByDate,
 } from "../../../modules/scheduleUtils";
+import { useModal } from "../../../modules/modalUtils";
 
 const Schedule = () => {
   const [events, setEvents] = useState([]);
   const [selectedDate, setSelectedDate] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
+  const { isOpen, onOpen, onClose } = useModal();
 
   const filteredTodos = filterTodosByDate(events, selectedDate);
 
@@ -24,7 +25,7 @@ const Schedule = () => {
       {/* 상단 영역: 일정 텍스트와 추가 버튼 */}
       <div className="schedule-header">
         <h2>●일정</h2>
-        <AddBtn onClick={openModal(setModalOpen, setSelectedDate)} />
+        <AddBtn onClick={openModal(onOpen, setSelectedDate)} />
       </div>
 
       <hr />
@@ -54,8 +55,8 @@ const Schedule = () => {
 
       {/* 일정 추가 모달 */}
       <AddTodoModal
-        isOpen={isModalOpen}
-        onClose={() => setModalOpen(false)}
+        isOpen={isOpen}
+        onClose={onClose}
         addEvent={addEvent(events, setEvents)}
         defaultDate={selectedDate}
       />

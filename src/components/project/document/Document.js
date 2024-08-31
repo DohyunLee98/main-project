@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../../../styles/ProjectPage.css";
 
 const initialData = {
   "/": {
@@ -39,7 +40,7 @@ const DirectoryViewer = () => {
   };
 
   return (
-    <div>
+    <div className="document-container">
       <h3>Current Path: {currentPath}</h3>
       {currentPath !== "/" && <button onClick={handleGoBack}>Go Back</button>}
       <ul>
