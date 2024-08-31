@@ -40,8 +40,15 @@ class GanttChart extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={addTask}>추가</button>
+      <div
+        style={{
+          width: "800px",
+          height: "400px",
+          transform: "scale(1.0)",
+          transformOrigin: "top left",
+          overflowX: "auto",
+        }}
+      >
         <FrappeGantt
           tasks={this.state.tasks}
           viewMode={this.state.mode} // mode를 Day로 설정하여 일별로 출력
