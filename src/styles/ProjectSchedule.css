@@ -18,13 +18,13 @@
   }
   
   .calendar-container {
-    flex: 2; /* 캘린더 영역이 2배의 공간을 차지 */
+    flex: 6; /* 캘린더 영역이 3배의 공간을 차지 */
     margin-right: 20px; /* 캘린더와 칸반/간트차트 간의 간격 설정 */
     height: 100%;
   }
   
   .kanban-gantt-container {
-    flex: 1; /* 칸반과 간트차트가 나머지 공간을 균등하게 차지 */
+    flex: 4; /* 칸반과 간트차트가 나머지 공간을 균등하게 차지 */
     display: flex;
     flex-direction: column;
     gap: 20px; /* 칸반과 간트차트 간의 간격 설정 */
@@ -33,5 +33,5 @@
   
   .kanban-gantt-container > * {
     flex: 1; /* 칸반과 간트차트가 동일한 크기로 분할 */
+    overflow: hidden; /* 내용이 너무 많을 경우 잘라내기 */
   }
-  

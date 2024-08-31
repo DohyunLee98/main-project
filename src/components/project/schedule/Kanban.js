@@ -41,8 +41,6 @@ function Kanban({ selectedTask, setSelectedTask }) {
 
   return (
     <div>
-      <Btn onClick={handleAddTodo}>추가</Btn>
-
       <DragDropContext
         onDragEnd={(result) => onKanbanDragEnd(result, state, setState)}
       >
@@ -99,6 +97,8 @@ function Kanban({ selectedTask, setSelectedTask }) {
           );
         })}
       </DragDropContext>
+
+      <Btn onClick={handleAddTodo}>추가</Btn>
     </div>
   );
 }

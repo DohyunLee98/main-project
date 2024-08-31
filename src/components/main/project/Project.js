@@ -1,18 +1,14 @@
 import { useEffect, useState } from "react";
 import AddBtn from "./AddBtn";
 import LatestProject from "./LatestProject";
-import ManagementBtn from "./ManagementBtn";
 import ProjectList from "./ProjectList";
 import { requestProjects } from "../../../modules/main";
-import ProjectManagementModal from "./ProjectManagementModal";
-import { useModal } from "../../../modules/modalUtils";
 import "../../../styles/Project.css";
 import "../../../styles/LatestProject.css";
 import "../../../styles/ProjectList.css";
 
 const Project = () => {
   const [projects, setProjects] = useState(null);
-  const { isOpen, onOpen, onClose } = useModal();
   const [latestProject, setLatestProject] = useState(null);
   const [projectList, setProjectList] = useState(null);
 
@@ -40,13 +36,11 @@ const Project = () => {
         <h2>● 프로젝트</h2>
         <div className="project-buttons">
           <AddBtn />
-          <ManagementBtn onClick={onOpen} />
         </div>
       </div>
       <hr className="project-divider" />
       <LatestProject project={latestProject} />
       <ProjectList projectList={projectList} />
-      <ProjectManagementModal isOpen={isOpen} onClose={onClose} />
     </div>
   );
 };
