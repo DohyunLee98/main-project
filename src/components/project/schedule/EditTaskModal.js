@@ -24,8 +24,15 @@ function EditTaskModal({ isOpen, onClose, task, onSave, onDelete }) {
   useEffect(() => {
     if (task) {
       setName(task.name || "");
-      setStart(task.start ? task.start.replace("T", " ") : ""); // LocalDateTime을 문자열로 변환하여 표시
-      setEnd(task.end ? task.end.replace("T", " ") : ""); // LocalDateTime을 문자열로 변환하여 표시
+
+      // task.start와 task.end를 문자열로 받아 처리
+      const startDateTime = new Date(task.start);
+      const endDateTime = new Date(task.end);
+
+      // Date 객체를 yyyy-MM-dd 형식의 문자열로 변환
+      setStart(startDateTime.toISOString().split("T")[0]);
+      setEnd(endDateTime.toISOString().split("T")[0]);
+
       setProgress(task.progress || 0);
     }
   }, [task]);
@@ -34,8 +41,8 @@ function EditTaskModal({ isOpen, onClose, task, onSave, onDelete }) {
     const updatedTask = {
       ...task,
       name: name,
-      start: start.replace(" ", "T"), // 저장 시 LocalDateTime 형식으로 변환
-      end: end.replace(" ", "T"), // 저장 시 LocalDateTime 형식으로 변환
+      start: start + "T00:00:00", // 저장 시 시간을 00:00:00으로 설정하여 LocalDateTime 형식으로 변환
+      end: end + "T23:59:59", // 저장 시 시간을 23:59:59으로 설정하여 LocalDateTime 형식으로 변환
       progress: parseInt(progress, 10), // progress 값을 정수로 변환
     };
     onSave(updatedTask);

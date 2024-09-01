@@ -48,6 +48,16 @@ class GanttChart extends Component {
     });
   };
 
+  handleProgressChange = (task, progress) => {
+    const updatedTasks = this.state.tasks.map((t) =>
+      t.id === task.id ? { ...t, progress } : t
+    );
+    this.setState({ tasks: updatedTasks }, () => {
+      // 상태가 업데이트된 후에 간트차트를 리렌더링합니다.
+      this.setState(progessChange(task, this.state.tasks, progress));
+    });
+  };
+
   render() {
     const { tasks, isModalOpen, selectedTask } = this.state;
     return (
