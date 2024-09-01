@@ -3,12 +3,11 @@ import AddBtn from "./AddBtn";
 import LatestProject from "./LatestProject";
 import ProjectList from "./ProjectList";
 import { requestProject, requestProjects } from "../../../modules/main";
-import ProjectManagementModal from "./ProjectManagementModal";
 import { useModal } from "../../../modules/modalUtils";
-ojects } from "../../../modules/main";
 import "../../../styles/Project.css";
 import "../../../styles/LatestProject.css";
 import "../../../styles/ProjectList.css";
+import "../../../styles/MainSchedule.css";
 import { useNavigate } from "react-router-dom";
 
 const Project = () => {
@@ -53,11 +52,9 @@ const Project = () => {
       >
         확인해보세요
       </button>
-      <div className="project-header">
-        <h2>● 프로젝트</h2>
-        <div className="project-buttons">
-          <AddBtn />
-        </div>
+      <div className="schedule-header">
+        <h2>●프로젝트</h2>
+        <AddBtn />
       </div>
       <hr className="project-divider" />
       <LatestProject

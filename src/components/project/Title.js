@@ -9,16 +9,20 @@ const Title = (project) => {
   const [notice, setNotice] = useState(project.project[0].notice);
 
   return (
-    <div
-      style={{
-        width: "400px",
-        margin: "0 auto",
-        fontFamily: "Arial, sans-serif",
-      }}
-    >
-      <h2 style={{ textAlign: "center" }}>{title}</h2>
-      <h2 style={{ textAlign: "center" }}>{description}</h2>
-      {/* <h2 style={{ textAlign: "center" }}>{notice}</h2> */}
+    <div className="title-container">
+      <div className="title">
+        <h2>{title}</h2>
+      </div>
+      <div className="description">
+        <h2>{description}</h2>
+      </div>
+      <div className="notice-section">
+        <div className="notice-label">
+          <h2>●공지</h2>
+        </div>
+        <hr />
+        <div className="notice-content">{/*<h2>{notice}</h2>*/}</div>
+      </div>
     </div>
   );
 };
