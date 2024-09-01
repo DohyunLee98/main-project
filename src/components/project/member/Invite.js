@@ -9,7 +9,10 @@ const Invite = () => {
 
   return (
     <div className="invite-container">
-      <h1 className="invite-header">멤버 초대</h1>
+      <div className="schedule-header">
+        <h2>●멤버 관리</h2>
+      </div>
+      <hr />
       <div className="member-input-container">
         <MemberInput onAddMember={addMember} />
       </div>

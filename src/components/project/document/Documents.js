@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Btn from "../../common/Btn.js";
 import Document from "./Document";
+import AddBtn from "../../common/AddBtn";
 
 const initialData = {
   "/": {
@@ -162,8 +163,12 @@ function DirectoryViewer() {
   };
 
   return (
-    <div>
-      <Btn onClick={openAddFileModal}>추가</Btn>
+    <div className="document-container">
+      <div className="schedule-header">
+        <h2>●문서</h2>
+        <AddBtn onClick={openAddFileModal} />
+      </div>
+      <hr></hr>
       {addFileModalOpen && addFileModal()}
       {showDocumentModal && documentModal()}
       <div>

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import AddBtn from "./AddBtn";
 import LatestProject from "./LatestProject";
 import ProjectList from "./ProjectList";
+
 import {
   requestProject,
   requestProjects,
@@ -10,6 +11,7 @@ import {
 import "../../../styles/Project.css";
 import "../../../styles/LatestProject.css";
 import "../../../styles/ProjectList.css";
+import "../../../styles/MainSchedule.css";
 import { useNavigate } from "react-router-dom";
 
 const Project = () => {
