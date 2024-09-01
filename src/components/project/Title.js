@@ -1,17 +1,68 @@
 import React, { useState } from "react";
 import "../../styles/ProjectPage.css";
+import { requestUpdate } from "../../modules/title";
 
 const Title = ({ project }) => {
-  const [title, setTitle] = useState(project.title);
-  const [description, setDescription] = useState(project.description);
+  const [formData, setFormData] = useState({
+    title: project.title,
+    description: project.description,
+  });
+
+  const [editingField, setEditingField] = useState(null);
+
+  const handleDoubleClick = (field) => {
+    setEditingField(field);
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevFormData) => ({
+      ...prevFormData,
+      [name]: value,
+    }));
+  };
+
+  const handleBlurOrEnter = async () => {
+    setEditingField(null);
+
+    await requestUpdate({ projectId: project.id, updatedData: formData });
+  };
 
   return (
     <div className="title-container">
       <div className="title">
-        <h2>{title}</h2>
+        {editingField === "title" ? (
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            onBlur={handleBlurOrEnter}
+            onKeyDown={(e) => e.key === "Enter" && handleBlurOrEnter()}
+            autoFocus
+          />
+        ) : (
+          <h2 onDoubleClick={() => handleDoubleClick("title")}>
+            {formData.title}
+          </h2>
+        )}
       </div>
       <div className="description">
-        <h2>{description}</h2>
+        {editingField === "description" ? (
+          <input
+            type="text"
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            onBlur={handleBlurOrEnter}
+            onKeyDown={(e) => e.key === "Enter" && handleBlurOrEnter()}
+            autoFocus
+          />
+        ) : (
+          <h2 onDoubleClick={() => handleDoubleClick("description")}>
+            {formData.description}
+          </h2>
+        )}
       </div>
       <div className="notice-section">
         <div className="notice-label">
