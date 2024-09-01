@@ -15,21 +15,21 @@ import {
 } from "@chakra-ui/react";
 
 function AddTaskModal({ isOpen, onClose, addTask, defaultDate }) {
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [start, setStart] = useState(defaultDate || "");
   const [end, setEnd] = useState(defaultDate || "");
 
   // Task 저장 함수
   const handleSave = () => {
     const taskData = {
-      name,
+      title,
       start,
       end,
     };
 
     console.log("Saving Task: ", taskData);
 
-    if (name.trim() !== "") {
+    if (title.trim() !== "") {
       addTask(taskData);
       onClose();
     }
@@ -47,8 +47,8 @@ function AddTaskModal({ isOpen, onClose, addTask, defaultDate }) {
               <FormLabel>제목</FormLabel>
               <Input
                 placeholder="Task 이름을 입력하세요"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
               />
             </FormControl>
 
