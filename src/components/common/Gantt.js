@@ -1,11 +1,7 @@
 import React, { Component } from "react";
 import { FrappeGantt } from "frappe-gantt-react";
-import {
-  addTask,
-  dateChange,
-  deleteTask,
-  progessChange,
-} from "../../modules/project";
+import { dateChange, progessChange } from "../../modules/project";
+import EditTaskModal from "../project/schedule/EditTaskModal";
 
 class GanttChart extends Component {
   constructor(props) {
@@ -38,7 +34,22 @@ class GanttChart extends Component {
     };
   }
 
+  openEditModal = (task) => {
+    this.setState({
+      isModalOpen: true,
+      selectedTask: task,
+    });
+  };
+
+  closeEditModal = () => {
+    this.setState({
+      isModalOpen: false,
+      selectedTask: null,
+    });
+  };
+
   render() {
+    const { tasks, isModalOpen, selectedTask } = this.state;
     return (
       <div
         style={{
@@ -52,9 +63,7 @@ class GanttChart extends Component {
         <FrappeGantt
           tasks={this.state.tasks}
           viewMode={this.state.mode} // mode를 Day로 설정하여 일별로 출력
-          onClick={(task) => {
-            this.setState(deleteTask(task, this.state.tasks));
-          }}
+          onClick={(task) => this.openEditModal(task)}
           onDateChange={(task, start, end) => {
             this.setState(dateChange(task, this.state.tasks, start, end));
           }}
@@ -65,6 +74,20 @@ class GanttChart extends Component {
             this.setState({ tasks }); // 상태 업데이트
           }}
         />
+
+        {selectedTask && (
+          <EditTaskModal
+            isOpen={isModalOpen}
+            onClose={this.closeEditModal}
+            task={selectedTask}
+            onSave={(updatedTask) => {
+              const updatedTasks = tasks.map((t) =>
+                t.id === updatedTask.id ? updatedTask : t
+              );
+              this.setState({ tasks: updatedTasks, isModalOpen: false });
+            }}
+          />
+        )}
       </div>
     );
   }

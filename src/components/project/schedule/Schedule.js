@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Calendar from "../../common/Calendar";
 import GanttChart from "../../common/Gantt";
-import AddTaskModal from "./AddTaskModal";
 import Kanban from "./Kanban";
 import AddBtn from "../../common/AddBtn";
 import {
@@ -12,6 +11,7 @@ import {
 } from "../../../modules/scheduleUtils";
 import { fetchTaskWithTodos } from "../../../modules/taskUtils";
 import "../../../styles/ProjectSchedule.css";
+import AddScheduleModal from "./AddScheduleModal";
 
 const Schedule = ({ projectId, projectTasks }) => {
   const [events, setEvents] = useState(projectTasks);
@@ -43,7 +43,6 @@ const Schedule = ({ projectId, projectTasks }) => {
 
   return (
     <div className="schedule-container">
-      {/* 상단 영역: 일정 텍스트와 추가 버튼 */}
       <div className="schedule-header">
         <h2>●일정</h2>
         <AddBtn onClick={openModal(setModalOpen, setSelectedDate)} />
@@ -63,7 +62,7 @@ const Schedule = ({ projectId, projectTasks }) => {
           <GanttChart />
         </div>
       </div>
-      <AddTaskModal
+      <AddScheduleModal
         isOpen={isModalOpen}
         onClose={() => setModalOpen(false)}
         addTask={addTask}
