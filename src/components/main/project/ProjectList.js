@@ -9,7 +9,6 @@ const ProjectList = ({ projectList }) => {
           projectList.map((project, index) => (
             <div key={index} className="project-card">
               <div className="project-card-title">{project.title}</div>
-              <div className="project-card-dueDate">{project.dueDate}</div>
               <div className="project-card-profile-container">
                 <img
                   src={project.creatorProfile}
