@@ -1,6 +1,5 @@
-export const addTodo = (state, setState) => {
-  // 칸반 todo 추가
-  console.log("칸반 todo 추가", state);
+export const requestDeleteTask = (task) => {
+  console.log(task);
 };
 
 export const onKanbanDragEnd = (result, state, setState) => {
@@ -79,17 +78,4 @@ export const dateChange = (task, tasks, start, end) => {
   tasks[taskIndex].start = start;
   tasks[taskIndex].end = end;
   return { tasks: tasks }; // 상태 업데이트
-};
-
-export const deleteTask = (task, tasks) => {
-  const confirmDelete = window.confirm(`${task.name}을 삭제하시겠습니까?`);
-  if (confirmDelete) {
-    const newTasks = tasks.filter((t) => t.id !== task.id);
-    return { tasks: newTasks };
-  }
-  return { tasks };
-};
-
-export const addTask = () => {
-  console.log("간트차트 Task 추가");
 };

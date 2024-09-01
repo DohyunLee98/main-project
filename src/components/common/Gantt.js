@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import { FrappeGantt } from "frappe-gantt-react";
-import { dateChange, progessChange } from "../../modules/project";
+import {
+  dateChange,
+  progessChange,
+  requestDeleteTask,
+} from "../../modules/project";
 import EditTaskModal from "../project/schedule/EditTaskModal";
 
 class GanttChart extends Component {
@@ -58,6 +62,11 @@ class GanttChart extends Component {
     });
   };
 
+  deleteTask = (task) => {
+    console.log("Gantt컴포넌트 " + JSON.stringify(task));
+    // const response = requestDeleteTask(task);
+  };
+
   render() {
     const { tasks, isModalOpen, selectedTask } = this.state;
     return (
@@ -95,6 +104,9 @@ class GanttChart extends Component {
                 t.id === updatedTask.id ? updatedTask : t
               );
               this.setState({ tasks: updatedTasks, isModalOpen: false });
+            }}
+            onDelete={() => {
+              this.deleteTask(selectedTask);
             }}
           />
         )}
