@@ -12,6 +12,7 @@ export const requestProject = async (latestProject) => {
     }
 
     const data = response.data;
+    console.log("main모듈 " + JSON.stringify(response.data, null, 2));
     return data;
   } catch (error) {
     console.error("프로젝트 정보 불러오기 실패", error);
@@ -51,5 +52,5 @@ export const requestProjects = async () => {
 export const showProject = async (navigate, selectedProject) => {
   const response = await requestProject(selectedProject);
 
-  navigate(`/${selectedProject.id}`, { state: { project: response.data } });
+  navigate(`/${selectedProject.id}`, { state: response.data });
 };

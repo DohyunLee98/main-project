@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "../../styles/ProjectPage.css";
 
-const Title = (project) => {
+const Title = ({ project }) => {
   const [title, setTitle] = useState(project.title);
   const [description, setDescription] = useState(project.description);
 
