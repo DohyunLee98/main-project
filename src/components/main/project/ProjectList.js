@@ -21,7 +21,6 @@ const ProjectList = ({ projectList }) => {
               onClick={() => handleCardClick(project)}
             >
               <div className="project-card-title">{project.title}</div>
-              <div className="project-card-dueDate">{project.dueDate}</div>
               <div className="project-card-profile-container">
                 <img
                   src={project.creatorProfile}

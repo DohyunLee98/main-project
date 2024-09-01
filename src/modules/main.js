@@ -47,3 +47,9 @@ export const requestProjects = async () => {
     return null;
   }
 };
+
+export const showProject = async (navigate, selectedProject) => {
+  const response = await requestProject(selectedProject);
+
+  navigate(`/${selectedProject.id}`, { state: { project: response.data } });
+};
