@@ -1,14 +1,10 @@
 import React from "react";
 import "../../../styles/ProjectList.css";
 import { useNavigate } from "react-router-dom";
+import { showProject } from "../../../modules/main";
 
 const ProjectList = ({ projectList }) => {
-  const navigate = useNavigate(); // useNavigate 훅 사용
-
-  const handleCardClick = (project) => {
-    navigate(`/project/${project.id}`, { state: { project } });
-    // 프로젝트 id를 사용하여 해당 프로젝트의 상세 페이지로 이동
-  };
+  const navigate = useNavigate();
 
   return (
     <div className="project-list-container">
@@ -18,7 +14,7 @@ const ProjectList = ({ projectList }) => {
             <div
               key={index}
               className="project-card"
-              onClick={() => handleCardClick(project)}
+              onClick={() => showProject(navigate, project)}
             >
               <div className="project-card-title">{project.title}</div>
               <div className="project-card-profile-container">

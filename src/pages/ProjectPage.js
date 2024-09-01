@@ -8,20 +8,13 @@ import "../styles/ProjectPage.css";
 
 const ProjectPage = () => {
   const location = useLocation();
-  const { project } = location.state || {};
+  const project = location.state || {};
 
   return (
     <div className="project-page-container">
-      <button
-        onClick={() => {
-          console.log(project);
-        }}
-      >
-        화긴
-      </button>
       {/* 프로젝트 제목과 공지사항 */}
       <div className="project-section">
-        <Title project={project} />
+        <Title project={project[0]} />
       </div>
       {/* 일정 섹션: 캘린더, 칸반, 간트차트 */}
       <div className="project-section">

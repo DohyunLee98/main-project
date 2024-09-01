@@ -3,11 +3,7 @@ import AddBtn from "./AddBtn";
 import LatestProject from "./LatestProject";
 import ProjectList from "./ProjectList";
 
-import {
-  requestProject,
-  requestProjects,
-  showProject,
-} from "../../../modules/main";
+import { requestProjects, showProject } from "../../../modules/main";
 import "../../../styles/Project.css";
 import "../../../styles/LatestProject.css";
 import "../../../styles/ProjectList.css";
