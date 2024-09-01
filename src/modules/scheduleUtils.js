@@ -11,8 +11,8 @@ export const requestCreateTask = async ({ projectId, newTask }) => {
       {
         projectId: projectId,
         title: newTask.title,
-        start: newTask.start,
-        end: newTask.end,
+        start: newTask.start + "T00:00:00",
+        end: newTask.end + "T00:00:00",
       },
       {
         headers: {
