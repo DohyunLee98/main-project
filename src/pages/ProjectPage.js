@@ -9,6 +9,7 @@ import "../styles/ProjectPage.css";
 
 const ProjectPage = () => {
   const location = useLocation();
+  console.log("projectPage 컴포넌트 " + JSON.stringify(location.state));
   const project = location.state || {};
 
   return (
@@ -17,11 +18,11 @@ const ProjectPage = () => {
       <div className="project-page-container">
         {/* 프로젝트 제목과 공지사항 */}
         <div className="project-section">
-          <Title project={project[0]} />
+          <Title project={project} />
         </div>
         {/* 일정 섹션: 캘린더, 칸반, 간트차트 */}
         <div className="project-section">
-          <Schedule />
+          <Schedule projectId={project.id} projectTasks={project.tasks} />
         </div>
         {/* 문서 관리 섹션 */}
         <div className="project-section">

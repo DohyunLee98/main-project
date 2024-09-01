@@ -8,12 +8,13 @@ import {
   openModal,
   addEvent,
   handleDateClick,
+  requestCreateTask,
 } from "../../../modules/scheduleUtils";
 import { fetchTaskWithTodos } from "../../../modules/taskUtils";
 import "../../../styles/ProjectSchedule.css";
 
-const Schedule = () => {
-  const [events, setEvents] = useState([]);
+const Schedule = ({ projectId, projectTasks }) => {
+  const [events, setEvents] = useState(projectTasks);
   const [selectedDate, setSelectedDate] = useState(null);
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -31,8 +32,13 @@ const Schedule = () => {
   };
 
   // Task 추가 함수
-  const addTask = (newTask) => {
-    setEvents([...events, newTask]);
+  const addTask = async (newTask) => {
+    const response = await requestCreateTask({
+      projectId: projectId,
+      newTask: newTask,
+    });
+    setEvents(response.data);
+    console.log("project.Schedule 컴포넌트 " + JSON.stringify(response));
   };
 
   return (

@@ -27,12 +27,9 @@ function AddTaskModal({ isOpen, onClose, addTask, defaultDate }) {
   //이벤트 저장 함수
   const handleSave = () => {
     const taskData = {
-      id: Date.now(),
       title,
-      start: startDate,
-      end: endDate,
-      time: `${time.start}~${time.end}`,
-      status,
+      start: startDate + "T" + time.start + ":00",
+      end: endDate + "T" + time.end + ":00",
     };
 
     console.log("Saving Task: ", taskData);

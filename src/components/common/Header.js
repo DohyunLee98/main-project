@@ -5,6 +5,9 @@ import "../../styles/Header.css";
 const Header = () => {
   const navigate = useNavigate();
 
+  const toMainPage = () => {
+    navigate("/main");
+  };
   const handleLogout = () => {
     // 로그아웃 로직을 여기에 추가
     navigate("/");
@@ -13,7 +16,9 @@ const Header = () => {
   return (
     <header className="header-container">
       <div className="header-content">
-        <div className="logo">Logo</div>
+        <div className="logo" onClick={toMainPage}>
+          Logo
+        </div>
         <div className="spacer"></div>
         <button className="logout-button" onClick={handleLogout}>
           로그아웃
