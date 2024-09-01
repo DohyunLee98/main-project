@@ -18,6 +18,7 @@ function AddTaskModal({ isOpen, onClose, addTask, defaultDate }) {
   const [title, setTitle] = useState("");
   const [start, setStart] = useState(defaultDate || "");
   const [end, setEnd] = useState(defaultDate || "");
+  const [progress] = useState(0);
 
   // Task 저장 함수
   const handleSave = () => {
@@ -25,6 +26,7 @@ function AddTaskModal({ isOpen, onClose, addTask, defaultDate }) {
       title,
       start,
       end,
+      progress: 0,
     };
 
     console.log("Saving Task: ", taskData);

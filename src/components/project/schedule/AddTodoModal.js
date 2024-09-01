@@ -15,14 +15,16 @@ import {
   Radio,
   Stack,
   Button,
+  Select,
 } from "@chakra-ui/react";
 
-function AddTodoModal({ isOpen, onClose, addTodo, defaultDate }) {
+function AddTodoModal({ isOpen, onClose, addTodo, defaultDate, members }) {
   const [title, setTitle] = useState("");
   const [startDate, setStartDate] = useState(defaultDate || "");
   const [endDate, setEndDate] = useState(defaultDate || "");
   const [time, setTime] = useState({ start: "", end: "" });
   const [status, setStatus] = useState("not_started");
+  const [assignedTo, setAssignedTo] = useState([]);
 
   // Todo 저장 함수
   const handleSave = () => {
@@ -32,6 +34,7 @@ function AddTodoModal({ isOpen, onClose, addTodo, defaultDate }) {
       endDate,
       time,
       status,
+      assignedTo,
     };
 
     console.log("Saving Todo: ", todoData);
@@ -102,6 +105,21 @@ function AddTodoModal({ isOpen, onClose, addTodo, defaultDate }) {
                   <Radio value="completed">완료</Radio>
                 </Stack>
               </RadioGroup>
+            </FormControl>
+
+            <FormControl mt={4}>
+              <FormLabel>할당 대상자</FormLabel>
+              <Select
+                placeholder="선택"
+                onChange={(e) => setAssignedTo(e.target.value)}
+                value={assignedTo}
+              >
+                {/* {members.map((member) => (
+                  <option key={member.userId} value={member.userId}>
+                     {member.userName}  
+                  </option>
+                ))} */}
+              </Select>
             </FormControl>
           </ModalBody>
 
