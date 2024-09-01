@@ -5,6 +5,7 @@
 .main-page-container {
     padding-top: 20px; /* 헤더와 첫 번째 섹션 사이의 간격 추가 */
     padding-bottom: 20px;
+    min-height: 100vh; /* 페이지가 최소한 전체 화면 높이를 채우도록 설정 */
 }
 .main-section {
     margin-bottom: 40px; /* 각 섹션 사이에 40px의 간격 추가 */
