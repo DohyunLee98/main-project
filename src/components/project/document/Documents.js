@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Btn from "../../common/Btn.js";
 import Document from "./Document";
 import AddBtn from "../../common/AddBtn";
+import "../../../styles/Documents.css";
 
 const initialData = {
   "/": {
@@ -103,27 +103,8 @@ function DirectoryViewer() {
 
   const addFileModal = () => {
     return (
-      <div
-        id="modal-background"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "20px",
-            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-          }}
-        >
+      <div id="modal-background">
+        <div className="modal-content">
           <button onClick={createDirectory}>폴더 생성</button>
           <button onClick={createDocument}>문서 생성</button>
           <button onClick={closeAddFileModal}>취소</button>
@@ -134,27 +115,8 @@ function DirectoryViewer() {
 
   const documentModal = () => {
     return (
-      <div
-        id="modal-background"
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0, 0, 0, 0.5)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "white",
-            padding: "20px",
-            boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.1)",
-          }}
-        >
+      <div id="modal-background">
+        <div className="modal-content">
           <Document fileName={selectedFile} />
           <button onClick={closeDocumentModal}>닫기</button>
         </div>
@@ -168,7 +130,7 @@ function DirectoryViewer() {
         <h2>●문서</h2>
         <AddBtn onClick={openAddFileModal} />
       </div>
-      <hr></hr>
+      <hr />
       {addFileModalOpen && addFileModal()}
       {showDocumentModal && documentModal()}
       <div>

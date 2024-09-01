@@ -1,3 +1,31 @@
+import axios from "axios";
+
+export const requestCreateTask = async ({ projectId, newTask }) => {
+  try {
+    console.log(
+      "scheduleUtils 모듈에서 추가될 Task " +
+        JSON.stringify({ projectId, newTask })
+    );
+    const response = await axios.post(
+      "http://localhost:8080/task",
+      {
+        projectId: projectId,
+        title: newTask.title,
+        start: newTask.start,
+        end: newTask.end,
+      },
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Task 생성 실패", error); // 에러 메시지를 상태에 저장합니다.
+  }
+};
+
 export const openModal = (setModalOpen, setSelectedDate) => () => {
   setSelectedDate(null);
   setModalOpen(true);
