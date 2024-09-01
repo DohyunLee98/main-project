@@ -97,8 +97,6 @@ function Kanban({ selectedTask, setSelectedTask }) {
           );
         })}
       </DragDropContext>
-
-      <Btn onClick={handleAddTodo}>추가</Btn>
     </div>
   );
 }
