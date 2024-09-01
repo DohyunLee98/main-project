@@ -20,13 +20,21 @@ const ProjectPage = () => {
         화긴
       </button>
       {/* 프로젝트 제목과 공지사항 */}
-      <Title project={project} />
+      <div className="project-section">
+        <Title project={project} />
+      </div>
       {/* 일정 섹션: 캘린더, 칸반, 간트차트 */}
-      <Schedule />
+      <div className="project-section">
+        <Schedule />
+      </div>
       {/* 문서 관리 섹션 */}
-      <DirectoryViewer />
+      <div className="project-section">
+        <DirectoryViewer />
+      </div>
       {/* 멤버 관리 섹션 */}
-      <Invite />
+      <div className="project-section">
+        <Invite />
+      </div>
     </div>
   );
 };
