@@ -15,7 +15,7 @@ const Title = (project) => {
       </div>
       <div className="notice-section">
         <div className="notice-label">
-          <h2>●공지</h2>
+          <h2 className="notice-text">●공지</h2>
         </div>
         <hr />
         <div className="notice-content">{/*<h2>{notice}</h2>*/}</div>
