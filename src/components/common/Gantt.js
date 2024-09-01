@@ -39,6 +39,10 @@ class GanttChart extends Component {
       isModalOpen: true,
       selectedTask: task,
     });
+
+    // 팝업 요소 제거
+    const popups = document.querySelectorAll(".details-container");
+    popups.forEach((popup) => popup.remove());
   };
 
   closeEditModal = () => {
@@ -59,7 +63,11 @@ class GanttChart extends Component {
   };
 
   render() {
-    const { tasks, isModalOpen, selectedTask } = this.state;
+    const { tasks, isModalOpen, selectedTask } = this.props;
+    if (!tasks || tasks.length === 0) {
+      return <div></div>;
+    }
+
     return (
       <div
         style={{
@@ -71,18 +79,11 @@ class GanttChart extends Component {
         }}
       >
         <FrappeGantt
-          tasks={this.state.tasks}
-          viewMode={this.state.mode} // mode를 Day로 설정하여 일별로 출력
-          onClick={(task) => this.openEditModal(task)}
-          onDateChange={(task, start, end) => {
-            this.setState(dateChange(task, this.state.tasks, start, end));
-          }}
-          onProgressChange={(task, progress) => {
-            this.setState(progessChange(task, this.state.tasks, progress));
-          }}
-          onTasksChange={(tasks) => {
-            this.setState({ tasks }); // 상태 업데이트
-          }}
+          tasks={tasks}
+          viewMode="Day" // mode를 Day로 설정하여 일별로 출력
+          onClick={this.openEditModal}
+          onDateChange={this.handleDateChange}
+          onProgressChange={this.handleProgressChange}
         />
 
         {selectedTask && (
@@ -94,7 +95,8 @@ class GanttChart extends Component {
               const updatedTasks = tasks.map((t) =>
                 t.id === updatedTask.id ? updatedTask : t
               );
-              this.setState({ tasks: updatedTasks, isModalOpen: false });
+              this.props.setTasks(updatedTasks);
+              this.closeEditModal();
             }}
           />
         )}

@@ -24,7 +24,7 @@ function AddTodoModal({ isOpen, onClose, addTodo, defaultDate, members }) {
   const [endDate, setEndDate] = useState(defaultDate || "");
   const [time, setTime] = useState({ start: "", end: "" });
   const [status, setStatus] = useState("not_started");
-  const [assignedTo, setAssignedTo] = useState([]);
+  const [assignedTo, setAssignedTo] = useState("");
 
   // Todo 저장 함수
   const handleSave = () => {

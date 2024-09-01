@@ -7,7 +7,7 @@ import withDragAndDrop from "react-big-calendar/lib/addons/dragAndDrop";
 const localizer = momentLocalizer(moment);
 const DnDCalendar = withDragAndDrop(BigCalendar);
 
-const Calendar = ({ events, setEvents, onDateClick, onTaskClick }) => {
+const Calendar = ({ events, setEvents, onDateClick, onTaskClick, type }) => {
   const [selectedEvent, setSelectedEvent] = useState(null);
 
   //선택된 날짜를 Schedule로 전달
@@ -39,13 +39,19 @@ const Calendar = ({ events, setEvents, onDateClick, onTaskClick }) => {
     setEvents(updatedEvents);
   };
 
-  //날짜를 Date 객체로 변환
+  //날짜를 Date 객체로 변환하면서 type에 따라 조정
   const convertEventDates = (events) => {
-    return events.map((event) => ({
-      ...event,
-      start: new Date(event.start),
-      end: new Date(event.end),
-    }));
+    return events.map((event) => {
+      const start = new Date(event.start);
+      const end = new Date(event.end);
+
+      // 프로젝트 페이지에서만 종료일에 하루 추가
+      if (type === "task") {
+        end.setDate(end.getDate() + 1);
+      }
+
+      return { ...event, start, end };
+    });
   };
 
   //커스텀 이벤트 스타일 적용

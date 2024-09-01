@@ -35,10 +35,18 @@ const Schedule = ({ projectId, projectTasks }) => {
   const addTask = async (newTask) => {
     const response = await requestCreateTask({
       projectId: projectId,
-      newTask: newTask,
+      newTask: { ...newTask, progress: 0 },
     });
     setEvents(response.data);
     console.log("project.Schedule 컴포넌트 " + JSON.stringify(response));
+  };
+
+  // Task 업데이트 함수
+  const updateTask = (updatedTask) => {
+    const updatedEvents = events.map((task) =>
+      task.id === updatedTask.id ? updatedTask : task
+    );
+    setEvents(updatedEvents);
   };
 
   return (
@@ -55,11 +63,12 @@ const Schedule = ({ projectId, projectTasks }) => {
             setEvents={setEvents}
             onDateClick={handleDateClick(setSelectedDate)}
             onTaskClick={handleTaskClick}
+            type="task"
           />
         </div>
         <div className="kanban-gantt-container">
           <Kanban task={selectedTask} />
-          <GanttChart />
+          <GanttChart tasks={events} updateTask={updateTask} />
         </div>
       </div>
       <AddScheduleModal
